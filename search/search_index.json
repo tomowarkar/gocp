@@ -1,0 +1,1 @@
+{"config":{"lang":["en"],"min_search_length":3,"prebuild_index":false,"separator":"[\\s\\-]+"},"docs":[{"location":"","text":"Hello World!","title":"Hello World!"},{"location":"#hello-world","text":"","title":"Hello World!"},{"location":"blog/201208_01/","text":"This is the first paragraph of the document.","title":"My Document"}]}
