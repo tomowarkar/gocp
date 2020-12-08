@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 <!-- https://github.com/squidfunk/mkdocs-material/blob/master/material/base.html -->
+{% set site_url = config.site_url | default(nav.homepage.url, true) | url %}
 {% block content %}
 {% if page.edit_url %}
   <a href="{{ page.edit_url }}" title="{{ lang.t('edit.link.title') }}" class="md-content__button md-icon">
@@ -11,7 +12,7 @@
 {% endif %}
     <ul class="tags">
     {% for tag in page.meta.tags %}
-    <li><a href="{{config.site_url}}tags/{{ tag }}" class="tag">{{ tag }}</a></li>
+    <li><a href="{{ site_url }}/tags/{{ tag }}" class="tag">{{ tag }}</a></li>
     {% endfor %}
     </ul>
 {{ page.content }}
