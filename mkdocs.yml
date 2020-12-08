@@ -22,6 +22,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.mark
+  - pymdownx.snippets
   - pymdownx.smartsymbols
   - pymdownx.superfences
   - pymdownx.tasklist:
@@ -35,3 +36,6 @@ extra_javascript:
 extra_css:
   - stylesheets/extra.css
 
+plugins:
+  - macros
+  - search
