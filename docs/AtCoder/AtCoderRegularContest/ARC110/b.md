@@ -6,6 +6,8 @@ tags:
     - golang
 ---
 
+# B - Many 110
+
 ??? success "AC"
 	```go 
 	package main
