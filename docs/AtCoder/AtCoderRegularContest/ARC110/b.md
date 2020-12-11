@@ -6,7 +6,6 @@ tags:
     - golang
 ---
 
-
 ??? success "AC"
 	```go 
 	package main
