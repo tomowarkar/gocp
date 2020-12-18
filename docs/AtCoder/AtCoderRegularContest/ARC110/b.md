@@ -1,12 +1,10 @@
 ---
-title: B - Many 110
+title: 【ARC110】B - Many 110
 tags: 
     - AtCoder
     - ARC
     - golang
 ---
-
-# B - Many 110
 
 ??? success "AC"
 	```go 
