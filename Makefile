@@ -8,5 +8,5 @@ serve:
 build:
 	poetry run mkdocs build
 
-gh-deploy:
+deploy:
 	poetry run mkdocs gh-deploy
