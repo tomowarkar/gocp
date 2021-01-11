@@ -33,17 +33,6 @@
 
 {% endif %}
 <!-- /tag pool -->
-<!--  -->
-{% if page.meta.type == 'recent' %}
-<h3>新着</h3>
-<ul class="recent-pages">
-  {% for p in (nav.pages|sort(attribute="update_date"))[:5] %}
-  <!-- TODO: make serve と github pagesでの挙動が異なるのでベタ貼りをよしなに修正 -->
-  <li><a href="https://tomowarkar.github.io/gocp/{{ p.url }}">{{p.update_date}}: {{ p.title }}</a></li>
-  {% endfor %}
-</ul>
-{% endif %}
-<!--/  -->
 
 {{ page.content }}
 {% if page and page.meta %}
