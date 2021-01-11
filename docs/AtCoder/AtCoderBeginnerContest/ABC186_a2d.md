@@ -1,5 +1,5 @@
 ---
-title: 【ABC110】A~D問題
+title: 【ABC186】A~D問題
 tags: 
     - AtCoder
     - ABC
@@ -18,7 +18,7 @@ tags:
 
 問題文: [A - Brick](https://atcoder.jp/contests/abc186/tasks/abc186_a)
 
-## 考えたこと
+### 考えたこと
 
 整数の切り捨て除算
 
@@ -58,7 +58,7 @@ tags:
 
 問題文: [B - Blocks on Grid](https://atcoder.jp/contests/abc186/tasks/abc186_b)
 
-## 考えたこと
+### 考えたこと
 
 グリッド状のマス目自体に意味はないので1次元配列で全要素の最小値と合計値を用いることで解く。
 全ての値を最小値にればいいので
@@ -107,7 +107,7 @@ $\sum_{i=0}^{HW}A_i-min(A) = sum(A)-min(A)\times H\times W$
 
 問題文: [C - Unlucky 7](https://atcoder.jp/contests/abc186/tasks/abc186_c)
 
-## 考えたこと
+### 考えたこと
 
 整数$1~N$について10進数と8進数の文字列を作成し、それに対して7が含まれているかを判定する文字列操作
 
@@ -164,7 +164,7 @@ Go言語では`fmt.Sprintf("%o", i)`で8進数の文字列を作ることがで�
 
 問題文: [D - Sum of difference](https://atcoder.jp/contests/abc186/tasks/abc186_d)
 
-## 考えたこと
+### 考えたこと
 
 
 $N\leq 2\times 10^5$なので$i,j$を全て試す$O(N^2)$は間に合わない。
