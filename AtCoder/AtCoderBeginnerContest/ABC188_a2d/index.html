@@ -1,0 +1,1370 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
+    
+    
+      
+        <title>【ABC188】A~D問題 - tomowarkar's gocp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.19753c6b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.196e0c26.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a-three-point-shot" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="tomowarkar&#39;s gocp" class="md-header-nav__button md-logo" aria-label="tomowarkar's gocp">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            tomowarkar's gocp
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              【ABC188】A~D問題
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="tomowarkar&#39;s gocp" class="md-nav__button md-logo" aria-label="tomowarkar's gocp">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    tomowarkar's gocp
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." class="md-nav__link">
+      Hello World!
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    <label class="md-nav__link" for="nav-2">
+      AtCoder
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="AtCoder" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        AtCoder
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked>
+    <label class="md-nav__link" for="nav-2-1">
+      AtCoderBeginnerContest
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="AtCoderBeginnerContest" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        AtCoderBeginnerContest
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ABC186_a2d/" class="md-nav__link">
+      【ABC186】A~D問題
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        【ABC188】A~D問題
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      【ABC188】A~D問題
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-three-point-shot" class="md-nav__link">
+    A - Three-Point Shot
+  </a>
+  
+    <nav class="md-nav" aria-label="A - Three-Point Shot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    考えたこと
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    入力例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    出力例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-orthogonality" class="md-nav__link">
+    B - Orthogonality
+  </a>
+  
+    <nav class="md-nav" aria-label="B - Orthogonality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    考えたこと
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    入力例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    出力例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-abc-tournament" class="md-nav__link">
+    C - ABC Tournament
+  </a>
+  
+    <nav class="md-nav" aria-label="C - ABC Tournament">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    考えたこと
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    入力例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    出力例
+  </a>
+  
+    <nav class="md-nav" aria-label="出力例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#after-contest" class="md-nav__link">
+    After Contest
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d-snuke-prime" class="md-nav__link">
+    D - Snuke Prime
+  </a>
+  
+    <nav class="md-nav" aria-label="D - Snuke Prime">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    考えたこと
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    反省
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" >
+    <label class="md-nav__link" for="nav-2-2">
+      AtCoderRegularContest
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="AtCoderRegularContest" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        AtCoderRegularContest
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2-1" type="checkbox" id="nav-2-2-1" >
+    <label class="md-nav__link" for="nav-2-2-1">
+      ARC110
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="ARC110" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        ARC110
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../AtCoderRegularContest/ARC110/b/" class="md-nav__link">
+      【ARC110】B - Many 110
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3" >
+    <label class="md-nav__link" for="nav-2-3">
+      PAST
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="PAST" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        <span class="md-nav__icon md-icon"></span>
+        PAST
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../PAST/past201912_a/" class="md-nav__link">
+      【PAST#01】A - 2 倍チェック
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../PAST/past201912_b/" class="md-nav__link">
+      【PAST#01】B - 増減管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../PAST/past201912_c/" class="md-nav__link">
+      【PAST#01】C - 3 番目
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../PAST/past201912_d/" class="md-nav__link">
+      【PAST#01】D - 重複検査
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../PAST/past201912_e/" class="md-nav__link">
+      【PAST#01】E - SNS のログ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../PAST/past201912_f/" class="md-nav__link">
+      【PAST#01】F - DoubleCamelCase Sort
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4" >
+    <label class="md-nav__link" for="nav-2-4">
+      Modules
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modules" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        <span class="md-nav__icon md-icon"></span>
+        Modules
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modules/extgcd/" class="md-nav__link">
+      拡張ユークリッド
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    <label class="md-nav__link" for="nav-3">
+      Blog
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Blog" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Blog
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../blog/210101/" class="md-nav__link">
+      今更ながら Python Developers Survey 2019 Results をみた。
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../blog/210101_01/" class="md-nav__link">
+      bash から zsh に変えた
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../blog/210103_01/" class="md-nav__link">
+      210103 01
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../blog/210110_01/" class="md-nav__link">
+      210110 01
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    <label class="md-nav__link" for="nav-4">
+      Jack in the box
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Jack in the box" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Jack in the box
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../jack_in_the_box/atcoder_cat/" class="md-nav__link">
+      AtCoder 問題カテゴライズ個人的メモ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../jack_in_the_box/python_tips/" class="md-nav__link">
+      あまり知らなかった Python の書き方
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3" >
+    <label class="md-nav__link" for="nav-4-3">
+      Go2py
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Go2py" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        <span class="md-nav__icon md-icon"></span>
+        Go2py
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../jack_in_the_box/go2py/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../jack_in_the_box/go2py/strings/" class="md-nav__link">
+      文字列操作
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+    <label class="md-nav__link" for="nav-5">
+      Tags
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tags" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Tags
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tags/ARC/" class="md-nav__link">
+      ARC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tags/AtCoder/" class="md-nav__link">
+      AtCoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tags/golang/" class="md-nav__link">
+      golang
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tags/python/" class="md-nav__link">
+      python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-three-point-shot" class="md-nav__link">
+    A - Three-Point Shot
+  </a>
+  
+    <nav class="md-nav" aria-label="A - Three-Point Shot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    考えたこと
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    入力例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    出力例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-orthogonality" class="md-nav__link">
+    B - Orthogonality
+  </a>
+  
+    <nav class="md-nav" aria-label="B - Orthogonality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    考えたこと
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    入力例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    出力例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-abc-tournament" class="md-nav__link">
+    C - ABC Tournament
+  </a>
+  
+    <nav class="md-nav" aria-label="C - ABC Tournament">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    考えたこと
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    入力例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    出力例
+  </a>
+  
+    <nav class="md-nav" aria-label="出力例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#after-contest" class="md-nav__link">
+    After Contest
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d-snuke-prime" class="md-nav__link">
+    D - Snuke Prime
+  </a>
+  
+    <nav class="md-nav" aria-label="D - Snuke Prime">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    考えたこと
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    反省
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+
+
+  <h1>【ABC188】A~D問題</h1>
+
+
+<!-- tag pool -->
+
+
+  <ul class="tags">
+  
+  <!-- TODO: make serve と github pagesでの挙動が異なるのでベタ貼りをよしなに修正 -->
+  <li><a href="https://tomowarkar.github.io/gocp/tags/AtCoder" class="tag">AtCoder</a></li>
+  
+  <!-- TODO: make serve と github pagesでの挙動が異なるのでベタ貼りをよしなに修正 -->
+  <li><a href="https://tomowarkar.github.io/gocp/tags/ABC" class="tag">ABC</a></li>
+  
+  <!-- TODO: make serve と github pagesでの挙動が異なるのでベタ貼りをよしなに修正 -->
+  <li><a href="https://tomowarkar.github.io/gocp/tags/golang" class="tag">golang</a></li>
+  
+  </ul>
+
+
+
+<!-- /tag pool -->
+<!--  -->
+
+<!--/  -->
+
+<p><a href="https://atcoder.jp/contests/abc188">AtCoder Beginner Contest 188</a></p>
+<h2 id="a-three-point-shot">A - Three-Point Shot<a class="headerlink" href="#a-three-point-shot" title="Permanent link">&para;</a></h2>
+<p>問題文: <a href="https://atcoder.jp/contests/abc188/tasks/abc188_a">https://atcoder.jp/contests/abc188/tasks/abc188_a</a></p>
+<h3 id="_1">考えたこと<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>問題文の通りに実装</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<h3 id="_2">入力例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>12 15
+</code></pre></div>
+<h3 id="_3">出力例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>No
+</code></pre></div>
+</div>
+<details class="success"><summary>AC</summary><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">X</span><span class="p">,</span> <span class="nx">Y</span> <span class="kt">int</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">X</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">Y</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">solve</span><span class="p">(</span><span class="nx">X</span><span class="p">,</span> <span class="nx">Y</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">solve</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">a</span> <span class="p">&gt;</span> <span class="nx">b</span> <span class="p">{</span>
+        <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="p">=</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">a</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="nx">a</span><span class="o">+</span><span class="mi">3</span> <span class="p">&gt;</span> <span class="nx">b</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">&quot;Yes&quot;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="s">&quot;No&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h2 id="b-orthogonality">B - Orthogonality<a class="headerlink" href="#b-orthogonality" title="Permanent link">&para;</a></h2>
+<p>問題文: <a href="https://atcoder.jp/contests/abc188/tasks/abc188_b">https://atcoder.jp/contests/abc188/tasks/abc188_b</a></p>
+<h3 id="_4">考えたこと<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>内積の計算パートと、計算結果の判定パート</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<h3 id="_5">入力例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>3
+1 3 5
+3 -6 3
+</code></pre></div>
+<h3 id="_6">出力例<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Yes
+</code></pre></div>
+</div>
+<details class="success"><summary>AC</summary><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;bufio&quot;</span>
+    <span class="s">&quot;os&quot;</span>
+    <span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">r</span> <span class="p">=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdin</span><span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">n</span> <span class="o">:=</span> <span class="nx">ni</span><span class="p">()</span>
+    <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">:=</span> <span class="nx">nis</span><span class="p">(</span><span class="nx">n</span><span class="p">),</span> <span class="nx">nis</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
+
+    <span class="kd">var</span> <span class="nx">cnt</span> <span class="kt">int</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">cnt</span> <span class="o">+=</span> <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">*</span><span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="nx">cnt</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Yes&quot;</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;No&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+
+<span class="kd">func</span> <span class="nx">ni</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">n</span> <span class="kt">int</span><span class="p">;</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Fscan</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">n</span><span class="p">);</span> <span class="k">return</span> <span class="nx">n</span> <span class="p">}</span>
+<span class="kd">func</span> <span class="nx">nis</span><span class="p">(</span><span class="nx">size</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span><span class="kd">var</span> <span class="nx">n</span> <span class="kt">int</span><span class="p">;</span><span class="nx">res</span><span class="o">:=</span><span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span><span class="nx">size</span><span class="p">);</span><span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="k">range</span> <span class="nx">res</span><span class="p">{</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Fscan</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span><span class="o">&amp;</span><span class="nx">n</span><span class="p">);</span><span class="nx">res</span><span class="p">[</span><span class="nx">i</span><span class="p">]=</span><span class="nx">n</span><span class="p">};</span><span class="k">return</span> <span class="nx">res</span><span class="p">}</span>
+</code></pre></div>
+</details>
+<h2 id="c-abc-tournament">C - ABC Tournament<a class="headerlink" href="#c-abc-tournament" title="Permanent link">&para;</a></h2>
+<p>問題文: <a href="https://atcoder.jp/contests/abc188/tasks/abc188_c">https://atcoder.jp/contests/abc188/tasks/abc188_c</a></p>
+<h3 id="_7">考えたこと<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>トーナメント問題</li>
+<li>選手数2~65536人</li>
+<li>愚直にシミュレートしても <span><span class="MathJax_Preview">O(2^N)</span><script type="math/tex">O(2^N)</script></span> で間に合う</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<h3 id="_8">入力例<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>4
+6 13 12 5 3 7 10 11 16 9 8 15 2 1 14 4
+</code></pre></div>
+<h3 id="_9">出力例<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>2
+</code></pre></div>
+</div>
+<details class="success"><summary>AC</summary><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;bufio&quot;</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;os&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">r</span> <span class="p">=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdin</span><span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">player</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">id</span>   <span class="kt">int</span>
+    <span class="nx">rate</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">n</span> <span class="o">:=</span> <span class="nx">ni</span><span class="p">()</span>
+    <span class="nx">ps</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="nx">player</span><span class="p">,</span> <span class="mi">1</span><span class="o">&lt;&lt;</span><span class="nx">n</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">ps</span> <span class="p">{</span>
+        <span class="nx">ps</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">id</span> <span class="p">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="nx">ps</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">rate</span> <span class="p">=</span> <span class="nx">ni</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="nx">_</span><span class="p">,</span> <span class="nx">loser</span> <span class="o">:=</span> <span class="nx">solve</span><span class="p">(</span><span class="nx">ps</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">loser</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">solve</span><span class="p">(</span><span class="nx">ps</span> <span class="p">[]</span><span class="nx">player</span><span class="p">)</span> <span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="nx">player</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">lenps</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">ps</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">lenps</span> <span class="o">==</span> <span class="mi">2</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">battle</span><span class="p">(</span><span class="nx">ps</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">ps</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="p">}</span>
+    <span class="nx">aw</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">solve</span><span class="p">(</span><span class="nx">ps</span><span class="p">[:</span><span class="nx">lenps</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+    <span class="nx">bw</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">solve</span><span class="p">(</span><span class="nx">ps</span><span class="p">[</span><span class="nx">lenps</span><span class="o">/</span><span class="mi">2</span><span class="p">:])</span>
+    <span class="k">return</span> <span class="nx">battle</span><span class="p">(</span><span class="nx">aw</span><span class="p">,</span> <span class="nx">bw</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 勝者, 敗者 の順で返す</span>
+<span class="kd">func</span> <span class="nx">battle</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">player</span><span class="p">)</span> <span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="nx">player</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">a</span><span class="p">.</span><span class="nx">rate</span> <span class="p">&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">rate</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">a</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">ni</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">n</span> <span class="kt">int</span><span class="p">;</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Fscan</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">n</span><span class="p">);</span> <span class="k">return</span> <span class="nx">n</span> <span class="p">}</span>
+<span class="kd">func</span> <span class="nx">nis</span><span class="p">(</span><span class="nx">size</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">n</span> <span class="kt">int</span>
+    <span class="nx">res</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">size</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">res</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Fscan</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">n</span><span class="p">)</span>
+        <span class="nx">res</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">n</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">res</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h4 id="after-contest">After Contest<a class="headerlink" href="#after-contest" title="Permanent link">&para;</a></h4>
+<p>解説の 解法2 で</p>
+<div class="admonition quote">
+<p class="admonition-title">引用</p>
+<p>準優勝するのは、優勝する( = 一番レートが高い) 選手とは逆側のブロックにいる選手のうち一番レートが高い人です。</p>
+</div>
+<p>とあった言われてみればという感じ</p>
+<p>次に同じような問題がきた場合に使えるようにしたい</p>
+<h2 id="d-snuke-prime">D - Snuke Prime<a class="headerlink" href="#d-snuke-prime" title="Permanent link">&para;</a></h2>
+<p>問題文: <a href="https://atcoder.jp/contests/abc188/tasks/abc188_d">https://atcoder.jp/contests/abc188/tasks/abc188_d</a></p>
+<h3 id="_10">考えたこと<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>区間加算問題</li>
+<li><span><span class="MathJax_Preview">a_i \leq b_i \leq 1e9</span><script type="math/tex">a_i \leq b_i \leq 1e9</script></span> がネック -&gt; 出入り口でのカウントを用いるいもす法が使用できない</li>
+<li><span><span class="MathJax_Preview">N \leq 2e5</span><script type="math/tex">N \leq 2e5</script></span> なので <span><span class="MathJax_Preview">O(NlogN)</span><script type="math/tex">O(NlogN)</script></span> での解法を考慮</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;bufio&quot;</span>
+    <span class="s">&quot;os&quot;</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;sort&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">r</span> <span class="p">=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdin</span><span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">event</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">day</span> <span class="kt">int</span>
+    <span class="nx">cost</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">n</span><span class="p">,</span> <span class="nx">C</span> <span class="o">:=</span> <span class="nx">ni</span><span class="p">(),</span> <span class="nx">ni</span><span class="p">()</span>
+
+    <span class="nx">es</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="nx">event</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="nx">n</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="p">&lt;</span><span class="nx">n</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">{</span>
+        <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="nx">ni</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">ni</span><span class="p">(),</span> <span class="nx">ni</span><span class="p">()</span>
+        <span class="nx">es</span><span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="nx">event</span><span class="p">{</span><span class="nx">a</span><span class="p">,</span> <span class="nx">c</span><span class="p">}</span>
+        <span class="nx">es</span><span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="nx">event</span><span class="p">{</span><span class="nx">b</span><span class="p">,</span> <span class="o">-</span><span class="nx">c</span><span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">sort</span><span class="p">.</span><span class="nx">Slice</span><span class="p">(</span><span class="nx">es</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span><span class="kt">bool</span><span class="p">{</span>
+        <span class="k">return</span> <span class="nx">es</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">day</span> <span class="p">&lt;</span> <span class="nx">es</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">day</span>
+    <span class="p">})</span>
+
+    <span class="kd">var</span> <span class="nx">ans</span><span class="p">,</span> <span class="nx">fee</span><span class="p">,</span> <span class="nx">eventStart</span> <span class="kt">int</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">e</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">es</span> <span class="p">{</span>
+        <span class="nx">nowTime</span> <span class="o">:=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">day</span>
+        <span class="k">if</span> <span class="nx">nowTime</span> <span class="o">!=</span> <span class="nx">eventStart</span> <span class="p">{</span>
+            <span class="nx">ans</span><span class="o">+=</span><span class="nx">min</span><span class="p">(</span><span class="nx">C</span><span class="p">,</span> <span class="nx">fee</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nx">nowTime</span><span class="o">-</span><span class="nx">eventStart</span><span class="p">)</span>
+            <span class="nx">eventStart</span> <span class="p">=</span> <span class="nx">nowTime</span>
+        <span class="p">}</span>
+        <span class="nx">fee</span> <span class="o">+=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">cost</span>
+    <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">ans</span><span class="p">)</span>
+
+<span class="p">}</span>
+
+
+<span class="kd">func</span> <span class="nx">ni</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">n</span> <span class="kt">int</span><span class="p">;</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Fscan</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">n</span><span class="p">);</span> <span class="k">return</span> <span class="nx">n</span> <span class="p">}</span>
+<span class="kd">func</span> <span class="nx">nis</span><span class="p">(</span><span class="nx">size</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span><span class="kd">var</span> <span class="nx">n</span> <span class="kt">int</span><span class="p">;</span><span class="nx">res</span><span class="o">:=</span><span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span><span class="nx">size</span><span class="p">);</span><span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="k">range</span> <span class="nx">res</span><span class="p">{</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Fscan</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span><span class="o">&amp;</span><span class="nx">n</span><span class="p">);</span><span class="nx">res</span><span class="p">[</span><span class="nx">i</span><span class="p">]=</span><span class="nx">n</span><span class="p">};</span><span class="k">return</span> <span class="nx">res</span><span class="p">}</span>
+<span class="kd">func</span> <span class="nx">min</span><span class="p">(</span><span class="nx">a</span> <span class="o">...</span><span class="kt">int</span><span class="p">)</span><span class="kt">int</span><span class="p">{</span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">{</span><span class="k">return</span> <span class="mi">0</span><span class="p">};</span><span class="nx">ret</span> <span class="o">:=</span> <span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="k">for</span> <span class="nx">_</span><span class="p">,</span><span class="nx">e</span><span class="o">:=</span><span class="k">range</span> <span class="nx">a</span><span class="p">{</span><span class="k">if</span> <span class="nx">e</span><span class="p">&lt;</span><span class="nx">ret</span><span class="p">{</span><span class="nx">ret</span><span class="p">=</span><span class="nx">e</span><span class="p">}};</span><span class="k">return</span> <span class="nx">ret</span><span class="p">}</span>
+</code></pre></div>
+<h3 id="_11">反省<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>区間加算問題は今までいもす法を用いるものしか解いたことがなかったため、コンテスト中に解くことができなかった</p>
+<p><span><span class="MathJax_Preview">N</span><script type="math/tex">N</script></span> の制約や、料金の更新が開始日と終了日にしか起こらない点をもう少し考えることができていれば解けたのではないか</p>
+
+  
+
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../ABC186_a2d/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                【ABC186】A~D問題
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../AtCoderRegularContest/ARC110/b/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                【ARC110】B - Many 110
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.0ac82a11.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
