@@ -20,8 +20,12 @@ import (
 	"fmt"
 )
 
-// 1-indexed 注意
 type FenwickTree []int
+
+func newFenwickTree(n int) *FenwickTree {
+	fw := make(FenwickTree, n+1)
+	return &fw
+}
 
 func (fw FenwickTree) add(i, x int) {
 	for i < len(fw) {
@@ -30,9 +34,8 @@ func (fw FenwickTree) add(i, x int) {
 	}
 }
 
-// [i, j] の累積和
-func (fw FenwickTree) sum(i, j int) int {
-	return fw._sum(j) - fw._sum(i-1)
+func (fw FenwickTree) add0(i, x int) {
+	fw.add(i+1, x)
 }
 
 // [0, i] の累積和
@@ -43,6 +46,21 @@ func (fw FenwickTree) _sum(i int) int {
 		i -= i & -i
 	}
 	return s
+}
+
+// 0-indexed
+func (fw FenwickTree) _sum0(i int) int {
+	return fw._sum(i + 1)
+}
+
+// [i, j] の累積和
+func (fw FenwickTree) sum(i, j int) int {
+	return fw._sum(j) - fw._sum(i-1)
+}
+
+// 0-indexed
+func (fw FenwickTree) sum0(i, j int) int {
+	return fw._sum0(j) - fw._sum0(i-1)
 }
 
 // よく使う形に変換 (デバック用)
@@ -56,7 +74,7 @@ func (fw FenwickTree) flatten() []int {
 
 func main() {
 	n := 3
-	fw := make(FenwickTree, n+1)
+	fw := newFenwickTree(n)
 
 	fw.add(1, 1)
 	fw.add(2, 2)
@@ -83,7 +101,40 @@ func main() {
 
     ``
 
+### 転倒数
 
+- 数列 $A = [a_0, a_i,...,a_{N-1}]$ における $i < j$ かつ $a_i>a_j$ を満たす添字の組$(i, j)$ の個数
+- $j$ を固定して考える
+- $j$ の左側にある、$a_j$ より大きな数$a_i$の個数の総和が求める数
+
+```go
+func main() {
+	N := nextInt()
+	A := nextInts(N)
+
+	fw := newFenwickTree(N)
+
+	var ans int
+	for _, a := range A {
+		ans += fw.sum0(a, N-1)
+		fw.add0(a, 1)
+	}
+
+	fmt.Println(ans)
+}
+
+```
+
+```
+Input:
+10
+0 3 1 5 4 2 9 6 8 7
+
+Output:
+9
+```
+
+- https://qiita.com/wisteria0410ss/items/296e0daa9e967ca71ed6 
 
 ## 参考
 
