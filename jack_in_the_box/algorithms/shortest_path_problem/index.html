@@ -1,0 +1,1411 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
+    
+    
+      
+        <title>最短経路詰め合わせ - tomowarkar's gocp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.19753c6b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.196e0c26.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tldr" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="tomowarkar&#39;s gocp" class="md-header-nav__button md-logo" aria-label="tomowarkar's gocp">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            tomowarkar's gocp
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              最短経路詰め合わせ
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="tomowarkar&#39;s gocp" class="md-nav__button md-logo" aria-label="tomowarkar's gocp">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    tomowarkar's gocp
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." class="md-nav__link">
+      Hello World!
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    <label class="md-nav__link" for="nav-2">
+      AtCoder
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="AtCoder" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        AtCoder
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" >
+    <label class="md-nav__link" for="nav-2-1">
+      AtCoderBeginnerContest
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="AtCoderBeginnerContest" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        AtCoderBeginnerContest
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../AtCoder/AtCoderBeginnerContest/ABC186_a2d/" class="md-nav__link">
+      【ABC186】A~D問題
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../AtCoder/AtCoderBeginnerContest/ABC188_a2d/" class="md-nav__link">
+      【ABC188】A~D問題
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" >
+    <label class="md-nav__link" for="nav-2-2">
+      AtCoderRegularContest
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="AtCoderRegularContest" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        AtCoderRegularContest
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2-1" type="checkbox" id="nav-2-2-1" >
+    <label class="md-nav__link" for="nav-2-2-1">
+      ARC110
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="ARC110" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        ARC110
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../AtCoder/AtCoderRegularContest/ARC110/b/" class="md-nav__link">
+      【ARC110】B - Many 110
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3" >
+    <label class="md-nav__link" for="nav-2-3">
+      PAST
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="PAST" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        <span class="md-nav__icon md-icon"></span>
+        PAST
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../AtCoder/PAST/past201912_a/" class="md-nav__link">
+      【PAST#01】A - 2 倍チェック
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../AtCoder/PAST/past201912_b/" class="md-nav__link">
+      【PAST#01】B - 増減管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../AtCoder/PAST/past201912_c/" class="md-nav__link">
+      【PAST#01】C - 3 番目
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../AtCoder/PAST/past201912_d/" class="md-nav__link">
+      【PAST#01】D - 重複検査
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../AtCoder/PAST/past201912_e/" class="md-nav__link">
+      【PAST#01】E - SNS のログ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../AtCoder/PAST/past201912_f/" class="md-nav__link">
+      【PAST#01】F - DoubleCamelCase Sort
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4" >
+    <label class="md-nav__link" for="nav-2-4">
+      Modules
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modules" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        <span class="md-nav__icon md-icon"></span>
+        Modules
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../AtCoder/modules/extgcd/" class="md-nav__link">
+      拡張ユークリッド
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    <label class="md-nav__link" for="nav-3">
+      Blog
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Blog" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Blog
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../blog/210101/" class="md-nav__link">
+      今更ながら Python Developers Survey 2019 Results をみた。
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../blog/210101_01/" class="md-nav__link">
+      bash から zsh に変えた
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../blog/210103_01/" class="md-nav__link">
+      wikipedia
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    <label class="md-nav__link" for="nav-4">
+      Jack in the box
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Jack in the box" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Jack in the box
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../atcoder_cat/" class="md-nav__link">
+      AtCoder 問題カテゴライズ個人的メモ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ffmpeg_util/" class="md-nav__link">
+      ffmpeg 個人的メモ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python_tips/" class="md-nav__link">
+      あまり知らなかった Python の書き方
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4" checked>
+    <label class="md-nav__link" for="nav-4-4">
+      Algorithms
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Algorithms" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        <span class="md-nav__icon md-icon"></span>
+        Algorithms
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../binary_powering/" class="md-nav__link">
+      The binary powering algorithm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fenwick_tree/" class="md-nav__link">
+      Fenwick Tree
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        最短経路詰め合わせ
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      最短経路詰め合わせ
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    共通部
+  </a>
+  
+    <nav class="md-nav" aria-label="共通部">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#priorityqueue" class="md-nav__link">
+    PriorityQueue
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    幅優先探索
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    ベルマン–フォード法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    ダイクストラ法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    プリム法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    コード
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    参考
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-5" type="checkbox" id="nav-4-5" >
+    <label class="md-nav__link" for="nav-4-5">
+      Go2py
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Go2py" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-5">
+        <span class="md-nav__icon md-icon"></span>
+        Go2py
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../go2py/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../go2py/strings/" class="md-nav__link">
+      文字列操作
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+    <label class="md-nav__link" for="nav-5">
+      Tags
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tags" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Tags
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tags/ARC/" class="md-nav__link">
+      ARC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tags/AtCoder/" class="md-nav__link">
+      AtCoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tags/golang/" class="md-nav__link">
+      golang
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tags/python/" class="md-nav__link">
+      python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    共通部
+  </a>
+  
+    <nav class="md-nav" aria-label="共通部">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#priorityqueue" class="md-nav__link">
+    PriorityQueue
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    幅優先探索
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    ベルマン–フォード法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    ダイクストラ法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    プリム法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    コード
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    参考
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+
+
+  <h1>最短経路詰め合わせ</h1>
+
+
+<!-- tag pool -->
+
+
+
+
+<!-- /tag pool -->
+
+<h2 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
+<p>Go言語で 隣接行列を用いた最短経路導出問題の様々なアルゴリズムを実装した。</p>
+<p>幅優先探索, ベルマン–フォード法, ダイクストラ法, プリム法</p>
+<h2 id="_1">共通部<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>頂点数<span><span class="MathJax_Preview">V</span><script type="math/tex">V</script></span>の時、<code>V = len(Adjlist)</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">pair</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">to</span><span class="p">,</span> <span class="nx">cost</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">Adjlist</span> <span class="p">[][]</span><span class="nx">pair</span>
+</code></pre></div>
+<h3 id="priorityqueue">PriorityQueue<a class="headerlink" href="#priorityqueue" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://golang.org/pkg/container/heap/">https://golang.org/pkg/container/heap/</a></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">PQ</span> <span class="p">[]</span><span class="nx">pair</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pq</span> <span class="nx">PQ</span><span class="p">)</span> <span class="nx">Len</span><span class="p">()</span> <span class="kt">int</span>           <span class="p">{</span> <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">pq</span><span class="p">)</span> <span class="p">}</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pq</span> <span class="nx">PQ</span><span class="p">)</span> <span class="nx">Less</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">pq</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">cost</span> <span class="p">&lt;</span> <span class="nx">pq</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">cost</span> <span class="p">}</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pq</span> <span class="nx">PQ</span><span class="p">)</span> <span class="nx">Swap</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span>      <span class="p">{</span> <span class="nx">pq</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">pq</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">pq</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span> <span class="nx">pq</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pq</span> <span class="o">*</span><span class="nx">PQ</span><span class="p">)</span> <span class="nx">Push</span><span class="p">(</span><span class="nx">x</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span> <span class="o">*</span><span class="nx">pq</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="o">*</span><span class="nx">pq</span><span class="p">,</span> <span class="nx">x</span><span class="p">.(</span><span class="nx">pair</span><span class="p">))</span> <span class="p">}</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pq</span> <span class="o">*</span><span class="nx">PQ</span><span class="p">)</span> <span class="nx">Pop</span><span class="p">()</span> <span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+    <span class="nx">old</span> <span class="o">:=</span> <span class="o">*</span><span class="nx">pq</span>
+    <span class="nx">n</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">old</span><span class="p">)</span>
+    <span class="nx">x</span> <span class="o">:=</span> <span class="nx">old</span><span class="p">[</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="o">*</span><span class="nx">pq</span> <span class="p">=</span> <span class="nx">old</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="nx">x</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="_2">幅優先探索<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>最も基本となるアルゴリズム</li>
+<li><code>result</code> の更新は1度しか行われないので、<span><span class="MathJax_Preview">O(V)</span><script type="math/tex">O(V)</script></span></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// s　から各ノードへのステップを返す O(V)</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">al</span> <span class="nx">Adjlist</span><span class="p">)</span> <span class="nx">bfs</span><span class="p">(</span><span class="nx">s</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">al</span><span class="p">))</span>
+    <span class="nx">fill</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">INF</span><span class="p">)</span>
+    <span class="nx">result</span><span class="p">[</span><span class="nx">s</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="nx">q</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="nx">s</span><span class="p">};</span> <span class="nb">len</span><span class="p">(</span><span class="nx">q</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">p</span> <span class="kt">int</span>
+        <span class="nx">p</span><span class="p">,</span> <span class="nx">q</span> <span class="p">=</span> <span class="nx">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">q</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+        <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">np</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">al</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nx">result</span><span class="p">[</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="o">!=</span> <span class="nx">INF</span> <span class="p">{</span>
+                <span class="k">continue</span>
+            <span class="p">}</span>
+            <span class="nx">result</span><span class="p">[</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">=</span> <span class="nx">result</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="nx">q</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="_3">ベルマン–フォード法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>全ての頂点からそれぞれ隣を見て、より小さい値で遷移可能であれば、値を更新する</li>
+<li>これを全ての頂点において更新が起きなくなるまで行う</li>
+<li>一周毎に少なくとも一つのさ最小コストが決定するので、ループ回数は最大 <code>V</code></li>
+<li>よって計算量は <span><span class="MathJax_Preview">O(VE)</span><script type="math/tex">O(VE)</script></span></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// s: 開始ノード　(負のコストが含まれる場合)</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">al</span> <span class="nx">Adjlist</span><span class="p">)</span> <span class="nx">bellman</span><span class="p">(</span><span class="nx">s</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">al</span><span class="p">))</span>
+    <span class="nx">fill</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">INF</span><span class="p">)</span>
+    <span class="nx">result</span><span class="p">[</span><span class="nx">s</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="nx">update</span> <span class="o">:=</span> <span class="kc">true</span><span class="p">;</span> <span class="nx">update</span><span class="p">;</span> <span class="p">{</span>
+        <span class="nx">update</span> <span class="p">=</span> <span class="kc">false</span>
+        <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">al</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">p</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">al</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="nx">result</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">+</span><span class="nx">p</span><span class="p">.</span><span class="nx">cost</span> <span class="p">{</span>
+                    <span class="nx">result</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">=</span> <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="nx">p</span><span class="p">.</span><span class="nx">cost</span>
+                    <span class="nx">update</span> <span class="p">=</span> <span class="kc">true</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="_4">ダイクストラ法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>最小コストを1ノードずつ確定させていく</li>
+<li>優先度付きキューを用いるので、キューから取り出した頂点の値が書き換わるのは最初の1度のみ</li>
+<li>全ての辺を回るのに<span><span class="MathJax_Preview">O(E)</span><script type="math/tex">O(E)</script></span>, キューの挿入,削除で<span><span class="MathJax_Preview">O(log\, E)</span><script type="math/tex">O(log\, E)</script></span></li>
+<li>よって計算量は <span><span class="MathJax_Preview">O(E\, log\, E)</span><script type="math/tex">O(E\, log\, E)</script></span></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// s: 開始ノード (コストが全て正の場合)</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">al</span> <span class="nx">Adjlist</span><span class="p">)</span> <span class="nx">dijk</span><span class="p">(</span><span class="nx">s</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">al</span><span class="p">))</span>
+    <span class="nx">fill</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">INF</span><span class="p">)</span>
+    <span class="nx">result</span><span class="p">[</span><span class="nx">s</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>
+
+    <span class="nx">pq</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">PQ</span><span class="p">)</span>
+    <span class="nx">heap</span><span class="p">.</span><span class="nx">Init</span><span class="p">(</span><span class="nx">pq</span><span class="p">)</span>
+
+    <span class="nx">heap</span><span class="p">.</span><span class="nx">Push</span><span class="p">(</span><span class="nx">pq</span><span class="p">,</span> <span class="nx">pair</span><span class="p">{</span><span class="nx">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">})</span>
+    <span class="k">for</span> <span class="nx">pq</span><span class="p">.</span><span class="nx">Len</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="nx">p</span> <span class="o">:=</span> <span class="nx">heap</span><span class="p">.</span><span class="nx">Pop</span><span class="p">(</span><span class="nx">pq</span><span class="p">).(</span><span class="nx">pair</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nx">result</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">cost</span> <span class="p">{</span>
+            <span class="k">continue</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">np</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">al</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">{</span>
+            <span class="nx">nc</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">cost</span> <span class="o">+</span> <span class="nx">np</span><span class="p">.</span><span class="nx">cost</span>
+            <span class="k">if</span> <span class="nx">result</span><span class="p">[</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">nc</span> <span class="p">{</span>
+                <span class="nx">result</span><span class="p">[</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">=</span> <span class="nx">nc</span>
+                <span class="nx">heap</span><span class="p">.</span><span class="nx">Push</span><span class="p">(</span><span class="nx">pq</span><span class="p">,</span> <span class="nx">pair</span><span class="p">{</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">,</span> <span class="nx">nc</span><span class="p">})</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">result</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="_5">プリム法<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>最小木を閉路を作らない最小コストで拡張していく</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// 頂点 s を含む最小全域木のコストを返す</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">al</span> <span class="nx">Adjlist</span><span class="p">)</span> <span class="nx">prim</span><span class="p">(</span><span class="nx">s</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">v</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">al</span><span class="p">)</span>
+    <span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+    <span class="nx">fill</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">INF</span><span class="p">)</span>
+
+    <span class="nx">pq</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">PQ</span><span class="p">)</span>
+    <span class="nx">heap</span><span class="p">.</span><span class="nx">Init</span><span class="p">(</span><span class="nx">pq</span><span class="p">)</span>
+
+    <span class="kd">var</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">size</span> <span class="kt">int</span>
+
+    <span class="nx">result</span><span class="p">[</span><span class="nx">s</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>
+    <span class="nx">heap</span><span class="p">.</span><span class="nx">Push</span><span class="p">(</span><span class="nx">pq</span><span class="p">,</span> <span class="nx">pair</span><span class="p">{</span><span class="nx">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">})</span>
+
+    <span class="k">for</span> <span class="nx">pq</span><span class="p">.</span><span class="nx">Len</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">size</span> <span class="p">&lt;</span> <span class="nx">v</span> <span class="p">{</span>
+        <span class="nx">p</span> <span class="o">:=</span> <span class="nx">heap</span><span class="p">.</span><span class="nx">Pop</span><span class="p">(</span><span class="nx">pq</span><span class="p">).(</span><span class="nx">pair</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">result</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">cost</span> <span class="p">{</span>
+            <span class="k">continue</span>
+        <span class="p">}</span>
+
+        <span class="nx">result</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">=</span> <span class="o">-</span><span class="nx">INF</span> <span class="c1">// used</span>
+        <span class="nx">length</span> <span class="o">+=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">cost</span>
+        <span class="nx">size</span><span class="o">++</span>
+
+        <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">np</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">al</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nx">result</span><span class="p">[</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">np</span><span class="p">.</span><span class="nx">cost</span> <span class="p">{</span>
+                <span class="nx">result</span><span class="p">[</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">=</span> <span class="nx">np</span><span class="p">.</span><span class="nx">cost</span>
+                <span class="nx">heap</span><span class="p">.</span><span class="nx">Push</span><span class="p">(</span><span class="nx">pq</span><span class="p">,</span> <span class="nx">pair</span><span class="p">{</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">,</span> <span class="nx">np</span><span class="p">.</span><span class="nx">cost</span><span class="p">})</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">length</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="_6">コード<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;bufio&quot;</span>
+    <span class="s">&quot;bytes&quot;</span>
+    <span class="s">&quot;container/heap&quot;</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;strconv&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">const</span> <span class="p">(</span>
+    <span class="nx">initialBufSize</span> <span class="p">=</span> <span class="mf">1e4</span>
+    <span class="nx">INF</span>            <span class="p">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">60</span>
+<span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">input</span> <span class="p">=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">`10 12</span>
+<span class="s">4 9 90</span>
+<span class="s">3 4 210</span>
+<span class="s">3 1 90</span>
+<span class="s">1 0 210</span>
+<span class="s">4 5 120</span>
+<span class="s">5 3 30</span>
+<span class="s">5 6 90</span>
+<span class="s">6 1 120</span>
+<span class="s">7 6 120</span>
+<span class="s">7 8 150</span>
+<span class="s">2 1 210</span>
+<span class="s">2 7 180`</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">r</span> <span class="p">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">sc</span> <span class="p">=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewScanner</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">pair</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">to</span><span class="p">,</span> <span class="nx">cost</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">Adjlist</span> <span class="p">[][]</span><span class="nx">pair</span>
+
+<span class="kd">type</span> <span class="nx">PQ</span> <span class="p">[]</span><span class="nx">pair</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pq</span> <span class="nx">PQ</span><span class="p">)</span> <span class="nx">Len</span><span class="p">()</span> <span class="kt">int</span>           <span class="p">{</span> <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">pq</span><span class="p">)</span> <span class="p">}</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pq</span> <span class="nx">PQ</span><span class="p">)</span> <span class="nx">Less</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">pq</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">cost</span> <span class="p">&lt;</span> <span class="nx">pq</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">cost</span> <span class="p">}</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pq</span> <span class="nx">PQ</span><span class="p">)</span> <span class="nx">Swap</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span>      <span class="p">{</span> <span class="nx">pq</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">pq</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">pq</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span> <span class="nx">pq</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pq</span> <span class="o">*</span><span class="nx">PQ</span><span class="p">)</span> <span class="nx">Push</span><span class="p">(</span><span class="nx">x</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span> <span class="o">*</span><span class="nx">pq</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="o">*</span><span class="nx">pq</span><span class="p">,</span> <span class="nx">x</span><span class="p">.(</span><span class="nx">pair</span><span class="p">))</span> <span class="p">}</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pq</span> <span class="o">*</span><span class="nx">PQ</span><span class="p">)</span> <span class="nx">Pop</span><span class="p">()</span> <span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+    <span class="nx">old</span> <span class="o">:=</span> <span class="o">*</span><span class="nx">pq</span>
+    <span class="nx">n</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">old</span><span class="p">)</span>
+    <span class="nx">x</span> <span class="o">:=</span> <span class="nx">old</span><span class="p">[</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="o">*</span><span class="nx">pq</span> <span class="p">=</span> <span class="nx">old</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="nx">x</span>
+<span class="p">}</span>
+
+<span class="c1">// s　から各ノードへのステップを返す O(V)</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">al</span> <span class="nx">Adjlist</span><span class="p">)</span> <span class="nx">bfs</span><span class="p">(</span><span class="nx">s</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">al</span><span class="p">))</span>
+    <span class="nx">fill</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">INF</span><span class="p">)</span>
+    <span class="nx">result</span><span class="p">[</span><span class="nx">s</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="nx">q</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="nx">s</span><span class="p">};</span> <span class="nb">len</span><span class="p">(</span><span class="nx">q</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">p</span> <span class="kt">int</span>
+        <span class="nx">p</span><span class="p">,</span> <span class="nx">q</span> <span class="p">=</span> <span class="nx">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">q</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+        <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">np</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">al</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nx">result</span><span class="p">[</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="o">!=</span> <span class="nx">INF</span> <span class="p">{</span>
+                <span class="k">continue</span>
+            <span class="p">}</span>
+            <span class="nx">result</span><span class="p">[</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">=</span> <span class="nx">result</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="nx">q</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+
+<span class="c1">// s: 開始ノード (コストが全て正の場合)</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">al</span> <span class="nx">Adjlist</span><span class="p">)</span> <span class="nx">dijk</span><span class="p">(</span><span class="nx">s</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">al</span><span class="p">))</span>
+    <span class="nx">fill</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">INF</span><span class="p">)</span>
+    <span class="nx">result</span><span class="p">[</span><span class="nx">s</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>
+
+    <span class="nx">pq</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">PQ</span><span class="p">)</span>
+    <span class="nx">heap</span><span class="p">.</span><span class="nx">Init</span><span class="p">(</span><span class="nx">pq</span><span class="p">)</span>
+
+    <span class="nx">heap</span><span class="p">.</span><span class="nx">Push</span><span class="p">(</span><span class="nx">pq</span><span class="p">,</span> <span class="nx">pair</span><span class="p">{</span><span class="nx">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">})</span>
+    <span class="k">for</span> <span class="nx">pq</span><span class="p">.</span><span class="nx">Len</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="nx">p</span> <span class="o">:=</span> <span class="nx">heap</span><span class="p">.</span><span class="nx">Pop</span><span class="p">(</span><span class="nx">pq</span><span class="p">).(</span><span class="nx">pair</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nx">result</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">cost</span> <span class="p">{</span>
+            <span class="k">continue</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">np</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">al</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">{</span>
+            <span class="nx">nc</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">cost</span> <span class="o">+</span> <span class="nx">np</span><span class="p">.</span><span class="nx">cost</span>
+            <span class="k">if</span> <span class="nx">result</span><span class="p">[</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">nc</span> <span class="p">{</span>
+                <span class="nx">result</span><span class="p">[</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">=</span> <span class="nx">nc</span>
+                <span class="nx">heap</span><span class="p">.</span><span class="nx">Push</span><span class="p">(</span><span class="nx">pq</span><span class="p">,</span> <span class="nx">pair</span><span class="p">{</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">,</span> <span class="nx">nc</span><span class="p">})</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">result</span>
+
+<span class="p">}</span>
+
+<span class="c1">// s: 開始ノード　(負のコストが含まれる場合)</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">al</span> <span class="nx">Adjlist</span><span class="p">)</span> <span class="nx">bellman</span><span class="p">(</span><span class="nx">s</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">al</span><span class="p">))</span>
+    <span class="nx">fill</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">INF</span><span class="p">)</span>
+    <span class="nx">result</span><span class="p">[</span><span class="nx">s</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="nx">update</span> <span class="o">:=</span> <span class="kc">true</span><span class="p">;</span> <span class="nx">update</span><span class="p">;</span> <span class="p">{</span>
+        <span class="nx">update</span> <span class="p">=</span> <span class="kc">false</span>
+        <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">al</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">p</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">al</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="nx">result</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">+</span><span class="nx">p</span><span class="p">.</span><span class="nx">cost</span> <span class="p">{</span>
+                    <span class="nx">result</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">=</span> <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="nx">p</span><span class="p">.</span><span class="nx">cost</span>
+                    <span class="nx">update</span> <span class="p">=</span> <span class="kc">true</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+
+<span class="c1">// 頂点 s を含む最小全域木のコストを返す</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">al</span> <span class="nx">Adjlist</span><span class="p">)</span> <span class="nx">prim</span><span class="p">(</span><span class="nx">s</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">v</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">al</span><span class="p">)</span>
+    <span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+    <span class="nx">fill</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">INF</span><span class="p">)</span>
+
+    <span class="nx">pq</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">PQ</span><span class="p">)</span>
+    <span class="nx">heap</span><span class="p">.</span><span class="nx">Init</span><span class="p">(</span><span class="nx">pq</span><span class="p">)</span>
+
+    <span class="kd">var</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">size</span> <span class="kt">int</span>
+
+    <span class="nx">result</span><span class="p">[</span><span class="nx">s</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>
+    <span class="nx">heap</span><span class="p">.</span><span class="nx">Push</span><span class="p">(</span><span class="nx">pq</span><span class="p">,</span> <span class="nx">pair</span><span class="p">{</span><span class="nx">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">})</span>
+
+    <span class="k">for</span> <span class="nx">pq</span><span class="p">.</span><span class="nx">Len</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">size</span> <span class="p">&lt;</span> <span class="nx">v</span> <span class="p">{</span>
+        <span class="nx">p</span> <span class="o">:=</span> <span class="nx">heap</span><span class="p">.</span><span class="nx">Pop</span><span class="p">(</span><span class="nx">pq</span><span class="p">).(</span><span class="nx">pair</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">result</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">cost</span> <span class="p">{</span>
+            <span class="k">continue</span>
+        <span class="p">}</span>
+
+        <span class="nx">result</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">=</span> <span class="o">-</span><span class="nx">INF</span> <span class="c1">// used</span>
+        <span class="nx">length</span> <span class="o">+=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">cost</span>
+        <span class="nx">size</span><span class="o">++</span>
+
+        <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">np</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">al</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nx">result</span><span class="p">[</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">np</span><span class="p">.</span><span class="nx">cost</span> <span class="p">{</span>
+                <span class="nx">result</span><span class="p">[</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">]</span> <span class="p">=</span> <span class="nx">np</span><span class="p">.</span><span class="nx">cost</span>
+                <span class="nx">heap</span><span class="p">.</span><span class="nx">Push</span><span class="p">(</span><span class="nx">pq</span><span class="p">,</span> <span class="nx">pair</span><span class="p">{</span><span class="nx">np</span><span class="p">.</span><span class="nx">to</span><span class="p">,</span> <span class="nx">np</span><span class="p">.</span><span class="nx">cost</span><span class="p">})</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">length</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">V</span><span class="p">,</span> <span class="nx">E</span> <span class="o">:=</span> <span class="nx">nextInt</span><span class="p">(),</span> <span class="nx">nextInt</span><span class="p">()</span>
+    <span class="nx">adjlist</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="nx">Adjlist</span><span class="p">,</span> <span class="nx">V</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">E</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="nx">nextInt</span><span class="p">(),</span> <span class="nx">nextInt</span><span class="p">(),</span> <span class="nx">nextInt</span><span class="p">()</span>
+        <span class="nx">adjlist</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">adjlist</span><span class="p">[</span><span class="nx">a</span><span class="p">],</span> <span class="nx">pair</span><span class="p">{</span><span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">})</span>
+        <span class="nx">adjlist</span><span class="p">[</span><span class="nx">b</span><span class="p">]</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">adjlist</span><span class="p">[</span><span class="nx">b</span><span class="p">],</span> <span class="nx">pair</span><span class="p">{</span><span class="nx">a</span><span class="p">,</span> <span class="nx">c</span><span class="p">})</span>
+    <span class="p">}</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">adjlist</span><span class="p">.</span><span class="nx">bellman</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span> <span class="c1">// [450 240 450 150 0 120 210 330 480 90]</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">adjlist</span><span class="p">.</span><span class="nx">dijk</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>    <span class="c1">// [450 240 450 150 0 120 210 330 480 90]</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">adjlist</span><span class="p">.</span><span class="nx">prim</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>    <span class="c1">// 1080</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">adjlist</span><span class="p">.</span><span class="nx">bfs</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>     <span class="c1">// [3 2 3 1 0 1 2 3 4 1]</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">buf</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">initialBufSize</span><span class="p">)</span>
+    <span class="nx">sc</span><span class="p">.</span><span class="nx">Buffer</span><span class="p">(</span><span class="nx">buf</span><span class="p">,</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">MaxScanTokenSize</span><span class="p">)</span>
+    <span class="nx">sc</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">bufio</span><span class="p">.</span><span class="nx">ScanWords</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">next</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="nx">sc</span><span class="p">.</span><span class="nx">Scan</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nx">sc</span><span class="p">.</span><span class="nx">Text</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">nextInt</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">sc</span><span class="p">.</span><span class="nx">Scan</span><span class="p">()</span>
+    <span class="nx">i</span><span class="p">,</span> <span class="nx">e</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nx">Atoi</span><span class="p">(</span><span class="nx">sc</span><span class="p">.</span><span class="nx">Text</span><span class="p">())</span>
+    <span class="k">if</span> <span class="nx">e</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">panic</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">i</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">fill</span><span class="p">(</span><span class="nx">a</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">x</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="nx">x</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="nx">i</span> <span class="o">*=</span> <span class="mi">2</span> <span class="p">{</span>
+        <span class="nb">copy</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">:],</span> <span class="nx">a</span><span class="p">[:</span><span class="nx">i</span><span class="p">])</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="_7">参考<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://www.slideshare.net/hcpc_hokudai/ss-62620083">https://www.slideshare.net/hcpc_hokudai/ss-62620083</a></li>
+</ul>
+
+  
+
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../fenwick_tree/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Fenwick Tree
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../go2py/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Index
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.0ac82a11.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

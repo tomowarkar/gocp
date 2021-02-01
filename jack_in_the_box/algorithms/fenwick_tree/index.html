@@ -643,10 +643,23 @@
     コード
   </a>
   
+    <nav class="md-nav" aria-label="コード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    転倒数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     参考
   </a>
   
@@ -656,6 +669,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../shortest_path_problem/" class="md-nav__link">
+      最短経路詰め合わせ
+    </a>
   </li>
 
         
@@ -831,10 +856,23 @@
     コード
   </a>
   
+    <nav class="md-nav" aria-label="コード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    転倒数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     参考
   </a>
   
@@ -877,8 +915,12 @@
     <span class="s">&quot;fmt&quot;</span>
 <span class="p">)</span>
 
-<span class="c1">// 1-indexed 注意</span>
 <span class="kd">type</span> <span class="nx">FenwickTree</span> <span class="p">[]</span><span class="kt">int</span>
+
+<span class="kd">func</span> <span class="nx">newFenwickTree</span><span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="nx">FenwickTree</span> <span class="p">{</span>
+    <span class="nx">fw</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="nx">FenwickTree</span><span class="p">,</span> <span class="nx">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">fw</span>
+<span class="p">}</span>
 
 <span class="kd">func</span> <span class="p">(</span><span class="nx">fw</span> <span class="nx">FenwickTree</span><span class="p">)</span> <span class="nx">add</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">x</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">fw</span><span class="p">)</span> <span class="p">{</span>
@@ -887,9 +929,8 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="c1">// [i, j] の累積和</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">fw</span> <span class="nx">FenwickTree</span><span class="p">)</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">fw</span><span class="p">.</span><span class="nx">_sum</span><span class="p">(</span><span class="nx">j</span><span class="p">)</span> <span class="o">-</span> <span class="nx">fw</span><span class="p">.</span><span class="nx">_sum</span><span class="p">(</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">fw</span> <span class="nx">FenwickTree</span><span class="p">)</span> <span class="nx">add0</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">x</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fw</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c1">// [0, i] の累積和</span>
@@ -900,6 +941,21 @@
         <span class="nx">i</span> <span class="o">-=</span> <span class="nx">i</span> <span class="o">&amp;</span> <span class="o">-</span><span class="nx">i</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="nx">s</span>
+<span class="p">}</span>
+
+<span class="c1">// 0-indexed</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">fw</span> <span class="nx">FenwickTree</span><span class="p">)</span> <span class="nx">_sum0</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">fw</span><span class="p">.</span><span class="nx">_sum</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// [i, j] の累積和</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">fw</span> <span class="nx">FenwickTree</span><span class="p">)</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">fw</span><span class="p">.</span><span class="nx">_sum</span><span class="p">(</span><span class="nx">j</span><span class="p">)</span> <span class="o">-</span> <span class="nx">fw</span><span class="p">.</span><span class="nx">_sum</span><span class="p">(</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 0-indexed</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">fw</span> <span class="nx">FenwickTree</span><span class="p">)</span> <span class="nx">sum0</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">fw</span><span class="p">.</span><span class="nx">_sum0</span><span class="p">(</span><span class="nx">j</span><span class="p">)</span> <span class="o">-</span> <span class="nx">fw</span><span class="p">.</span><span class="nx">_sum0</span><span class="p">(</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c1">// よく使う形に変換 (デバック用)</span>
@@ -913,7 +969,7 @@
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">n</span> <span class="o">:=</span> <span class="mi">3</span>
-    <span class="nx">fw</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="nx">FenwickTree</span><span class="p">,</span> <span class="nx">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nx">fw</span> <span class="o">:=</span> <span class="nx">newFenwickTree</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
 
     <span class="nx">fw</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="nx">fw</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -934,7 +990,38 @@
 <p><code>LSB = 3 &amp; -3 = 1</code>, <code>LSB = 6 &amp; -6 = 2</code></p>
 <p>``</p>
 </div>
-<h2 id="_3">参考<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_3">転倒数<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>数列 <span><span class="MathJax_Preview">A = [a_0, a_i,...,a_{N-1}]</span><script type="math/tex">A = [a_0, a_i,...,a_{N-1}]</script></span> における <span><span class="MathJax_Preview">i &lt; j</span><script type="math/tex">i < j</script></span> かつ <span><span class="MathJax_Preview">a_i&gt;a_j</span><script type="math/tex">a_i>a_j</script></span> を満たす添字の組<span><span class="MathJax_Preview">(i, j)</span><script type="math/tex">(i, j)</script></span> の個数</li>
+<li><span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> を固定して考える</li>
+<li><span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> の左側にある、<span><span class="MathJax_Preview">a_j</span><script type="math/tex">a_j</script></span> より大きな数<span><span class="MathJax_Preview">a_i</span><script type="math/tex">a_i</script></span>の個数の総和が求める数</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">N</span> <span class="o">:=</span> <span class="nx">nextInt</span><span class="p">()</span>
+    <span class="nx">A</span> <span class="o">:=</span> <span class="nx">nextInts</span><span class="p">(</span><span class="nx">N</span><span class="p">)</span>
+
+    <span class="nx">fw</span> <span class="o">:=</span> <span class="nx">newFenwickTree</span><span class="p">(</span><span class="nx">N</span><span class="p">)</span>
+
+    <span class="kd">var</span> <span class="nx">ans</span> <span class="kt">int</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">a</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">A</span> <span class="p">{</span>
+        <span class="nx">ans</span> <span class="o">+=</span> <span class="nx">fw</span><span class="p">.</span><span class="nx">sum0</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nx">fw</span><span class="p">.</span><span class="nx">add0</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">ans</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Input:
+10
+0 3 1 5 4 2 9 6 8 7
+
+Output:
+9
+</code></pre></div>
+<ul>
+<li><a href="https://qiita.com/wisteria0410ss/items/296e0daa9e967ca71ed6">https://qiita.com/wisteria0410ss/items/296e0daa9e967ca71ed6</a> </li>
+</ul>
+<h2 id="_4">参考<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://atcoder.github.io/ac-library/document_ja/fenwicktree.html">https://atcoder.github.io/ac-library/document_ja/fenwicktree.html</a></li>
 <li><a href="https://www.slideshare.net/hcpc_hokudai/binary-indexed-tree">https://www.slideshare.net/hcpc_hokudai/binary-indexed-tree</a></li>
@@ -974,13 +1061,13 @@
           </a>
         
         
-          <a href="../../go2py/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../shortest_path_problem/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Index
+                最短経路詰め合わせ
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
